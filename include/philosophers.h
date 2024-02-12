@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/09 16:33:22 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/12 17:38:40 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <limits.h>
+
+/*
+	* TABLE
+	* 
+	* ./philo 5 800 200 200 [5]
+*/
+
+typedef struct s_table
+{
+	long	philo_nb;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	meal_min;
+} t_table;
 
 typedef struct s_philo
 {
@@ -35,6 +51,9 @@ void	philo_work_NME(int philo_n, int time_die, int time_eat, int time_sleep);
 void	philo_work_ME(int philo_n, int time_die, int time_eat, int time_sleep, int must_eat);
 
 // utils.c
-int		ft_atoi(const char *str);
+void	error_exit(const char *error);
+
+// parsing.c
+void	parse_input(t_table *table, char **argv);
 
 # endif

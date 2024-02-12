@@ -6,36 +6,20 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:38:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/09 13:45:20 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/12 17:09:04 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_atoi(const char *str)
+void	ft_putstr(char const *str)
 {
-	int	i;
-	int	signs;
-	int	n;
+	while(*str)
+		write(1 ,str++, 1);
+}
 
-	i = 0;
-	signs = 0;
-	n = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == 45 || str[i] == 43)
-	{
-		if (str[i] == 45)
-			signs++;
-		i++;
-	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		n *= 10;
-		n = n + (str[i] - 48);
-		i++;
-	}
-	if ((signs % 2) != 0)
-		return (-n);
-	return (n);
+void	error_exit(const char *error)
+{
+	ft_putstr(error);
+	exit(EXIT_FAILURE);
 }
