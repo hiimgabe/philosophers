@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:03:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/12 17:42:06 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/13 17:57:09 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,9 @@ static long	ft_atol(const char *str)
 void	parse_input(t_table *table, char **argv)
 {
 	table->philo_nb = ft_atol(argv[1]);
-	table->time_to_die = ft_atol(argv[2]) * 1e3;
-	table->time_to_eat = ft_atol(argv[3]) * 1e3;
-	table->time_to_sleep = ft_atol(argv[4]) * 1e3;
-	if (table->time_to_die < 6e4 || table->time_to_eat < 6e4 ||
-		table->time_to_sleep < 6e4)
-		error_exit("Time inputs must be> 60.");
+	table->time_to_die = ft_atol(argv[2]);
+	table->time_to_eat = ft_atol(argv[3]);
+	table->time_to_sleep = ft_atol(argv[4]);
 	if (argv[5])
 		table->meal_min = ft_atol(argv[5]);
 	else
