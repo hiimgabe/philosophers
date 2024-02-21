@@ -4,7 +4,7 @@ OBJ 	= ${SRC:.c=.o}
 
 CC 		= cc
 RM 		= rm -f
-CFLAGS	= -g -Wall -Wextra -Werror -g
+CFLAGS	= -g -Wall -Wextra -Werror
 INCLUDE = -I include
 
 GREEN	= \033[38;5;47m

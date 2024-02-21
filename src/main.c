@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:52:30 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/13 17:56:44 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/21 15:07:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_table	table;
+	t_table	*table;
 	
 	if (argc == 5 || argc == 6)
 	{
 		// 1) parse input
-		parse_input(&table, argv);
+		parse_input(argv);
 		// 2) init data
-
+		table = init_data(argv);
 		// 3) put philos to work
 
 		// 4) clean the program

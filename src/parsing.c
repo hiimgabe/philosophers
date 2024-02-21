@@ -6,27 +6,22 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:03:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/13 17:57:09 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/21 15:31:15 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static inline bool is_digit(char c)
+bool	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static inline bool is_space(char c)
+bool	is_space(char c)
 {
 	return ((c >= 9 && c <= 13) || c == 32);
 }
 /*
-	* verify if input is only positive numbers
-	* and isn't bigger than INT_MAX
-	* valid input: "42" "  234" "	 +45*%^"
-*/
-
 static const char	*valid_input(const char *str)
 {
 	int			len;
@@ -45,31 +40,54 @@ static const char	*valid_input(const char *str)
 	while (is_digit(*str++))
 		len++;
 	if(len > 10)
-		error_exit("Input bigger than INT_MAX.");
+		error_exit("Input bigger than INT_MAX.\n");
 	return (number);
 }
 
-static long	ft_atol(const char *str)
+*/
+static void	check_digit(char *argv)
 {
-	long	n;
-
-	n = 0;
-	str = valid_input(str);
-	while (is_digit(*str))
-		n = (n * 10) + (*str++ - 48);
-	if (n > INT_MAX)
-		error_exit("Input bigger than INT_MAX");
-	return (n);
+	while (is_space(*argv))
+		argv++;
+	if (*argv == '+')
+		argv++;
+	else if (*argv == '-')
+		error_exit("ERROR: Negative number.\n");
+	if (!is_digit(*argv))
+		error_exit("ERROR: Non digit argument.\n");
 }
 
-void	parse_input(t_table *table, char **argv)
+static void	check_max_int(char *argv)
 {
-	table->philo_nb = ft_atol(argv[1]);
-	table->time_to_die = ft_atol(argv[2]);
-	table->time_to_eat = ft_atol(argv[3]);
-	table->time_to_sleep = ft_atol(argv[4]);
-	if (argv[5])
-		table->meal_min = ft_atol(argv[5]);
-	else
-		table->meal_min = -1;
+	int	len;
+	int	nb;
+
+	len = 0;
+	nb = 0;
+	while (is_space(*argv))
+		argv++;
+	if (*argv == '+')
+		argv++;
+	while (is_digit(*argv))
+	{
+		nb = (nb * 10) + (*argv++ - 48);
+		len++;
+	}
+	if (len > 10 || nb > INT_MAX)
+		error_exit("ERROR: Input bigger than INT_MAX.\n");
+	else if (nb == 0)
+		error_exit("ERROR: Input can't be 0.\n");
+}
+/*
+	checks:
+			check if bigger than INT_MAX
+			check if non-zero digits
+*/
+void	parse_input(char **argv)
+{
+	while(*++argv)
+	{
+		check_digit(*argv);
+		check_max_int(*argv);
+	}
 }
