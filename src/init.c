@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/21 16:20:52 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/22 08:51:01 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,43 @@
 	init mutexes
 */
 
-static t_philo	init_philos(t_table *table)
+static pthread_mutex_t	*init_forks(t_table *table)
+{
+	int	i;
+	pthread_mutex_t	*forks;
+
+	i = -1;
+	forks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
+	while (++i < table->philo_nb)
+	{
+		if (pthread_mutex_init(&forks[i], NULL))
+			return (NULL);
+	}
+	return (forks);
+}
+
+static void	assign_forks(t_philo *philo, int index)
+{
+	philo->fork[LEFT] = philo->id - 1;
+	if (philo->table->philo_nb - 1 == index)
+		philo->fork[RIGHT] = 0;
+	else
+		philo->fork[RIGHT] = philo->id;
+}
+
+static int	init_mutexes(t_table *table)
+{
+	table->forks = init_forks(table);
+	if (!table->forks)
+		return (error_exit("ERROR: Failed to init fork mutexes.\n"));
+	if (pthread_mutex_init(&table->table_m, NULL))
+		return (error_exit("ERROR: Failed to init table mutex.\n"));
+	if (pthread_mutex_init(&table->write_m, NULL))
+		return (error_exit("ERROR: Failed to init write mutex.\n"));
+	return (0);
+}
+
+static t_philo	*init_philos(t_table *table)
 {
 	int		i;
 	t_philo	*philos;
@@ -38,8 +74,9 @@ static t_philo	init_philos(t_table *table)
 		philos[i].nb_meals = 0;
 		philos[i].last_meal = 0;
 		philos[i].table = table;
-		assign_forks(philo[i].fork) // CONTINUE HERE
-	}	
+		assign_forks(&philos[i], i);
+	}
+	return (philos);
 }
 
 t_table	*init_data(char **argv)
@@ -57,5 +94,10 @@ t_table	*init_data(char **argv)
 		table->meal_min = ft_atol(argv[5]);
 	else
 		table->meal_min = -1;
+	if (init_mutexes(table))
+		return (NULL);
 	table->philos = init_philos(table);
+	if (!table)
+		return (NULL);
+	return (table);
 }

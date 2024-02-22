@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:03:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/21 15:31:15 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/22 08:41:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,12 @@ static void	check_max_int(char *argv)
 */
 void	parse_input(char **argv)
 {
-	while(*++argv)
+	int	i;
+
+	i = 0;
+	while(argv[++i])
 	{
-		check_digit(*argv);
-		check_max_int(*argv);
+		check_digit(argv[i]);
+		check_max_int(argv[i]);
 	}
 }
