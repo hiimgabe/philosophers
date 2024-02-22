@@ -1,5 +1,5 @@
 NAME 	= philo
-SRC 	= src/main.c src/philosophers.c src/utils.c src/init.c src/parsing.c
+SRC 	= src/main.c src/utils.c src/init.c src/parsing.c src/routine.c src/monitor.c src/forks.c
 OBJ 	= ${SRC:.c=.o}
 
 CC 		= cc

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:03:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 08:41:54 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/22 13:55:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,29 @@ bool	is_space(char c)
 	return ((c >= 9 && c <= 13) || c == 32);
 }
 /*
-static const char	*valid_input(const char *str)
-{
-	int			len;
-	const char	*number;
+																						static const char	*valid_input(const char *str)
+																						{
+																							int			len;
+																							const char	*number;
+																						
+																							len = 0;
+																							while (is_space(*str))
+																								++str;
+																							if (*str == '+')
+																								str++;
+																							else if (*str == '-')
+																								error_exit("Input is a negative number.\n");
+																							if (!is_digit(*str))
+																								error_exit("Input isn't a digit.\n");
+																							number = str;
+																							while (is_digit(*str++))
+																								len++;
+																							if(len > 10)
+																								error_exit("Input bigger than INT_MAX.\n");
+																							return (number);
+																						}
 
-	len = 0;
-	while (is_space(*str))
-		++str;
-	if (*str == '+')
-		str++;
-	else if (*str == '-')
-		error_exit("Input is a negative number.\n");
-	if (!is_digit(*str))
-		error_exit("Input isn't a digit.\n");
-	number = str;
-	while (is_digit(*str++))
-		len++;
-	if(len > 10)
-		error_exit("Input bigger than INT_MAX.\n");
-	return (number);
-}
+																						don't think i'll be using this
 
 */
 static void	check_digit(char *argv)
@@ -78,11 +80,6 @@ static void	check_max_int(char *argv)
 	else if (nb == 0)
 		error_exit("ERROR: Input can't be 0.\n");
 }
-/*
-	checks:
-			check if bigger than INT_MAX
-			check if non-zero digits
-*/
 void	parse_input(char **argv)
 {
 	int	i;
@@ -91,6 +88,6 @@ void	parse_input(char **argv)
 	while(argv[++i])
 	{
 		check_digit(argv[i]);
-		check_max_int(argv[i]);
+		check_max_int(argv[i]);															// this seems to be okay for now
 	}
 }

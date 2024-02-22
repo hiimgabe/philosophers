@@ -6,16 +6,17 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 08:51:01 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/22 14:05:01 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 /*
-	init the philosophers threads
-	init forks
-	init mutexes
+	this seems to be okay for now
+
+	we initialiaze the mutexes and allocate memory necessary for our program to work
+
 */
 
 static pthread_mutex_t	*init_forks(t_table *table)

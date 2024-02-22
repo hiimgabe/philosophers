@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 12:55:00 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/09 13:50:11 by gabe             ###   ########.fr       */
+/*   Created: 2024/02/22 09:29:47 by gabe              #+#    #+#             */
+/*   Updated: 2024/02/22 14:02:40 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_work_NME(int philo_n, int time_die, int time_eat, int time_sleep)
-{
-	printf("NME\nphilo_n %d\ntime_die %d\ntime_eat %d\ntime_sleep %d\n", philo_n, time_die, time_eat, time_sleep);
-}
+/*
+	this will monitor if any philo died
+	or if all philos are full
+	if so, we stop the simulation
+*/
 
-void	philo_work_ME(int philo_n, int time_die, int time_eat, int time_sleep, int must_eat)
+void	*monitor(void *data)
 {
-	printf("ME\nphilo_n %d\ntime_die %d\ntime_eat %d\ntime_sleep %d\nmust_eat %d\n", philo_n, time_die, time_eat, time_sleep, must_eat);
+	t_table	*table;
+
+	table = (t_table *)data;
+	printf("Monitoring started %ld\n", table->start);
+	return (NULL);
 }

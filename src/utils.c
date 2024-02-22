@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:38:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 08:31:20 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/22 12:13:52 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ long	ft_atol(const char *str)
 	while(is_digit(*str))
 		n = (n * 10) + (*str++ - 48);
 	return (n);
+}
+
+void	thread_queue(time_t start)
+{
+	while (get_time() < start)
+		continue;
+}
+void	philo_timer(t_table *table, time_t time)
+{
+	time_t	stop;
+
+	stop = get_time() + time;
+	while (get_time() < stop)
+	{
+		if (is_finished(table))
+			break;
+		usleep(100); // ??????
+	}
 }
