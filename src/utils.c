@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:38:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 12:13:52 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/23 16:35:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ long	get_time(void)
 	gettimeofday(&curr_time, NULL);
 	return ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));	
 }
-long	ft_atol(const char *str)
+int	ft_atol(const char *str)
 {
-	long	n;
+	int	n;
 
 	n = 0;
 	while (is_space(*str))
@@ -41,7 +41,10 @@ long	ft_atol(const char *str)
 void	thread_queue(time_t start)
 {
 	while (get_time() < start)
+	{
+		printf("get_time %ld - start %ld\n", get_time(), start);
 		continue;
+	}
 }
 void	philo_timer(t_table *table, time_t time)
 {

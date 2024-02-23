@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 13:42:35 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/23 16:24:27 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,26 @@ typedef	enum s_fork
 	RIGHT = 1,
 }	t_fork;
 
+typedef enum s_status
+{
+	EAT,
+	SLEEP,
+	THINK,
+	FORK1,
+	FORK2,
+	DEAD,
+}	t_status;
+
 typedef struct s_table
 {
 	t_philo			*philos;
 	long			philo_nb;
+	bool			stop;
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
 	time_t			meal_min;
 	time_t			start;
-	int				all_th;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	table_m;
 	pthread_mutex_t	write_m;
@@ -62,13 +72,9 @@ struct s_philo
 	t_table			*table;
 };
 
-// philosophers.c
-void	philo_work_NME(int philo_n, int time_die, int time_eat, int time_sleep);
-void	philo_work_ME(int philo_n, int time_die, int time_eat, int time_sleep, int must_eat);
-
 // utils.c
 int		error_exit(const char *error);
-long	ft_atol(const char *str);
+int		ft_atol(const char *str);
 long	get_time(void);
 void	thread_queue(time_t start);
 void	philo_timer(t_table *table, time_t time);
@@ -86,9 +92,13 @@ void	*routine(void *data);
 
 // monitor.c
 void	*monitor(void *data);
+bool	is_finished(t_table *table);
 
 // forks.c
 void	drop_forks(t_philo *philo);
 void	grab_forks(t_philo *philo);
+
+// status.c
+void	write_status(t_philo *philo, t_status status);
 
 # endif

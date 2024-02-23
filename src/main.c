@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:52:30 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 13:57:11 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/23 14:59:15gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static bool	start_routine(t_table *table)
 	int	i;
 
 	i = -1;
-	table->start = get_time(); 															// if we do get_time() + (table->philo_nb * 10) it seems
-	printf("%ld\n", table->start);														// to work in a different way after queueing the threads
+	table->start = get_time() + (table->philo_nb * 10);									// if we do get_time() + (table->philo_nb * 10) it seems
 	while (++i < table->philo_nb)														// no idea why but this is something to experiemnt more with
 	{
 		if (pthread_create(&table->philos[i].th, NULL, routine, &table->philos[i]))
@@ -56,6 +55,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 /*																						USEFUL PRINTING INFO (maybe)
+		int	i = -1;
 		while (++i < table->philo_nb)
 		{
 			printf("Philo : %d can use fork[%d] & fork[%d]\n", table->philos[i].id, table->philos[i].fork[LEFT], table->philos[i].fork[RIGHT]);

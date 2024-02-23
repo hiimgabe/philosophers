@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/22 14:05:01 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/23 16:29:59 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ t_table	*init_data(char **argv)
 	table->time_to_die = ft_atol(argv[2]);
 	table->time_to_eat = ft_atol(argv[3]);
 	table->time_to_sleep = ft_atol(argv[4]);
+	table->stop = false;
 	if (argv[5])
 		table->meal_min = ft_atol(argv[5]);
 	else
@@ -98,7 +99,7 @@ t_table	*init_data(char **argv)
 	if (init_mutexes(table))
 		return (NULL);
 	table->philos = init_philos(table);
-	if (!table)
+	if (!table->philos)
 		return (NULL);
 	return (table);
 }
