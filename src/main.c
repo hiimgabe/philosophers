@@ -23,14 +23,14 @@ static bool	start_routine(t_table *table)
 	int	i;
 
 	i = -1;
-	table->start = get_time() + (table->philo_nb * 10);									// if we do get_time() + (table->philo_nb * 10) it seems
+	table->start = get_time();									// if we do get_time() + (table->philo_nb * 10) it seems
 	while (++i < table->philo_nb)														// no idea why but this is something to experiemnt more with
 	{
 		if (pthread_create(&table->philos[i].th, NULL, routine, &table->philos[i]))
 			return (false);
-		pthread_mutex_lock(&table->philos[i].philo_m);
-		table->philos[i].last_meal = table->start;
-		pthread_mutex_unlock(&table->philos[i].philo_m);
+		pthread_mutex_lock(&table->table_m);
+		table->th_nb++;
+		pthread_mutex_unlock(&table->table_m);
 	}
 	if (pthread_create(&table->monitor, NULL, monitor, table))
 		return (false);

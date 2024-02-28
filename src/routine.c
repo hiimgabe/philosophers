@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:27:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/23 16:14:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/28 15:19:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*routine(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	thread_queue(philo->table->start);
+	thread_queue(philo->table);
 	pthread_mutex_lock(&philo->philo_m);								//	experiment if we really need to update last_meal a second time
 	philo->last_meal = philo->table->start;								//	or if it is enough to update it on start_routine()
 	pthread_mutex_unlock(&philo->philo_m);								//	for now it seems to need the redundancy (idk why)																	lonely_philo(philo) goes in here <----------
@@ -66,6 +66,7 @@ void	*routine(void *data)
 	{
 		eat_sleep(philo);
 		think(philo);
+		printf("Time	:	%ld", get_time() - philo->table->start);
 	}
 	return (NULL);
 }

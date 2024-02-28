@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:29:47 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/23 16:07:18 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/28 13:24:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ static bool	end_routine(t_table *table)
 }
 void	*monitor(void *data)
 {
-	printf("monitor");
 	t_table	*table;
 
 	table = (t_table *)data;
-	thread_queue(table->start);
 	while (!end_routine(table))
 		usleep(1000);
 	return (NULL);

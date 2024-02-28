@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/23 16:24:27 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/28 13:01:49 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ typedef enum s_status
 typedef struct s_table
 {
 	t_philo			*philos;
-	long			philo_nb;
+	int				philo_nb;
+	int				meal_min;
+	int				th_nb;
 	bool			stop;
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
-	time_t			meal_min;
 	time_t			start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	table_m;
@@ -66,7 +67,7 @@ struct s_philo
 	pthread_t		th;
 	int				id;
 	int				fork[2];
-	int				nb_meals;
+	time_t			nb_meals;
 	time_t			last_meal;
 	pthread_mutex_t	philo_m;
 	t_table			*table;
@@ -74,9 +75,9 @@ struct s_philo
 
 // utils.c
 int		error_exit(const char *error);
-int		ft_atol(const char *str);
+int		ft_atoi(const char *str);
 long	get_time(void);
-void	thread_queue(time_t start);
+void	thread_queue(t_table *table);
 void	philo_timer(t_table *table, time_t time);
 
 // parsing.c

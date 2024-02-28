@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/23 16:29:59 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/28 13:00:45 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static pthread_mutex_t	*init_forks(t_table *table)
 	int	i;
 	pthread_mutex_t	*forks;
 
-	i = -1;
 	forks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
+	if (!forks)
+		return (NULL);
+	i = -1;
 	while (++i < table->philo_nb)
 	{
 		if (pthread_mutex_init(&forks[i], NULL))
@@ -87,13 +89,14 @@ t_table	*init_data(char **argv)
 	table = (t_table *)malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
-	table->philo_nb = ft_atol(argv[1]);
-	table->time_to_die = ft_atol(argv[2]);
-	table->time_to_eat = ft_atol(argv[3]);
-	table->time_to_sleep = ft_atol(argv[4]);
+	table->philo_nb = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
+	table->th_nb = 0;
 	table->stop = false;
 	if (argv[5])
-		table->meal_min = ft_atol(argv[5]);
+		table->meal_min = ft_atoi(argv[5]);
 	else
 		table->meal_min = -1;
 	if (init_mutexes(table))

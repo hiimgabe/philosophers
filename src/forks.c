@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:28:59 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/23 15:21:51 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/28 12:55:09 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,5 @@ void	drop_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->table->forks[LEFT]);
 	pthread_mutex_unlock(&philo->table->forks[RIGHT]);
-	pthread_mutex_lock(&philo->philo_m);
-	printf("philo %d droped the forks\n", philo->id);
-	pthread_mutex_unlock(&philo->philo_m);
 }
 
