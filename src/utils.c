@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:38:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/28 15:23:38 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/29 10:01:26 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_atoi(const char *str)
 	return (n);
 }
 
-void	thread_queue(t_table *table)
+void	thread_queue(time_t start)
 {
-	while (table->th_nb != table->philo_nb)
+	while (get_time() < start)
 		continue;
 }
 void	philo_timer(t_table *table, time_t time)
@@ -48,13 +48,12 @@ void	philo_timer(t_table *table, time_t time)
 	time_t	stop;
 
 	stop = get_time() + time;
+	//printf("Timer philo\nstop	=	%ld\ntime	=	%ld\ncurr	=	%ld\n", stop, time, get_time());
 	while (get_time() < stop)
 	{
-		pthread_mutex_lock(&table->write_m);
-		printf("I am counting the time");
-		pthread_mutex_unlock(&table->write_m);
 		if (is_finished(table))
 			break;
 		usleep(100);
 	}
+	//printf("Left timer at %ld\n", get_time());
 }

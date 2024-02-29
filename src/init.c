@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/28 13:00:45 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/29 16:15:40 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ static pthread_mutex_t	*init_forks(t_table *table)
 	forks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
 	if (!forks)
 		return (NULL);
-	i = -1;
-	while (++i < table->philo_nb)
+	i = 0;
+	while (i < table->philo_nb)
 	{
 		if (pthread_mutex_init(&forks[i], NULL))
 			return (NULL);
+		i++;
 	}
 	return (forks);
 }
@@ -39,7 +40,7 @@ static pthread_mutex_t	*init_forks(t_table *table)
 static void	assign_forks(t_philo *philo, int index)
 {
 	philo->fork[LEFT] = philo->id - 1;
-	if (philo->table->philo_nb - 1 == index)
+	if (index == philo->table->philo_nb - 1)
 		philo->fork[RIGHT] = 0;
 	else
 		philo->fork[RIGHT] = philo->id;
@@ -62,10 +63,10 @@ static t_philo	*init_philos(t_table *table)
 	int		i;
 	t_philo	*philos;
 
-	i = -1;
 	philos = (t_philo *)malloc(sizeof(t_philo) * table->philo_nb);
 	if (!philos)
 		return (NULL);
+	i = -1;
 	while (++i < table->philo_nb)
 	{
 		if (pthread_mutex_init(&philos[i].philo_m, NULL))

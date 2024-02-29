@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/28 13:01:49 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/29 16:19:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <limits.h>
+
+# define NC		"\e[0m"
+# define RED	"\e[31m"
+# define GREEN	"\e[32m"
+# define PURPLE	"\e[35m"
+# define CYAN	"\e[36m"
 
 /*
 	* TABLE
@@ -50,7 +56,6 @@ typedef struct s_table
 	t_philo			*philos;
 	int				philo_nb;
 	int				meal_min;
-	int				th_nb;
 	bool			stop;
 	time_t			time_to_die;
 	time_t			time_to_eat;
@@ -77,7 +82,7 @@ struct s_philo
 int		error_exit(const char *error);
 int		ft_atoi(const char *str);
 long	get_time(void);
-void	thread_queue(t_table *table);
+void	thread_queue(time_t start);
 void	philo_timer(t_table *table, time_t time);
 
 // parsing.c
@@ -101,5 +106,8 @@ void	grab_forks(t_philo *philo);
 
 // status.c
 void	write_status(t_philo *philo, t_status status);
+
+// exit.c
+void	finish_dinner(t_table *table);
 
 # endif

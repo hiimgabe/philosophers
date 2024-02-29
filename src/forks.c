@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:28:59 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/28 12:55:09 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/29 13:59:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	grab_forks(t_philo *philo)
 		write_status(philo, FORK1);
 		pthread_mutex_lock(&philo->table->forks[philo->fork[RIGHT]]);
 		write_status(philo, FORK2);
+		printf(CYAN"%ld philo %d lock fork[%d] fork[%d]\n"NC, get_time(), philo->id, philo->fork[LEFT], philo->fork[RIGHT]);
 	}
 	else
 	{
@@ -37,6 +38,7 @@ void	grab_forks(t_philo *philo)
 		write_status(philo, FORK2);
 		pthread_mutex_lock(&philo->table->forks[philo->fork[LEFT]]);
 		write_status(philo, FORK1);
+		printf(CYAN"%ld philo %d lock fork[%d] fork[%d]\n"NC, get_time(), philo->id, philo->fork[RIGHT], philo->fork[LEFT]);
 	}
 }
 
@@ -44,5 +46,5 @@ void	drop_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->table->forks[LEFT]);
 	pthread_mutex_unlock(&philo->table->forks[RIGHT]);
+	printf(CYAN"%ld philo %d unlock fork[%d] fork[%d]\n"NC, get_time(), philo->id, philo->fork[RIGHT], philo->fork[LEFT]);
 }
-

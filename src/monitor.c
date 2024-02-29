@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:29:47 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/28 13:24:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:59:26 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	is_dead(t_philo *philo)
 	time_t	elapsed;
 
 	elapsed = get_time() - philo->last_meal;
-	if (philo->table->time_to_die > elapsed)
+	if (elapsed > philo->table->time_to_die)
 	{
 		write_status(philo, DEAD);
 		stop_everything(philo->table, true);
@@ -70,6 +70,9 @@ void	*monitor(void *data)
 	t_table	*table;
 
 	table = (t_table *)data;
+	if (table->meal_min == 0)
+		return (NULL);
+	thread_queue(table->start);
 	while (!end_routine(table))
 		usleep(1000);
 	return (NULL);
