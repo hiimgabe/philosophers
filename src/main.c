@@ -42,17 +42,14 @@ int	main(int argc, char **argv)
 {
 	t_table	*table;
 	
-	if (argc == 5 || argc == 6)
-	{
-		parse_input(argv);
-		table = init_data(argv);
-		if (!table)
-			return (error_exit("ERROR: Failed to init data.\n"));
-		if (!start_routine(table))
-			return (error_exit("ERROR: Failed to start routine.\n"));
-	}
-	else
-		error_exit("Invalid arguments.\nCorrect example: ./philo 5 800 200 200"); // Return error. Invalid arguments.
+	if (argc != 5 && argc != 6)
+		return(error_exit("ERROR: Wrong input arguments.\n"));
+	parse_input(argv);
+	table = init_data(argv);
+	if (!table)
+		return (error_exit("ERROR: Failed to init data.\n"));
+	if (!start_routine(table))
+		return (error_exit("ERROR: Failed to start routine.\n"));
 	finish_dinner(table);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:29:47 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/29 15:59:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:18:56 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static bool	is_dead(t_philo *philo)
 		write_status(philo, DEAD);
 		stop_everything(philo->table, true);
 		pthread_mutex_unlock(&philo->philo_m);
+		return (true);
 	}
 	return (false);
 }
@@ -57,11 +58,11 @@ static bool	end_routine(t_table *table)
 		if (table->meal_min != -1 && table->philos[i].nb_meals < table->meal_min)
 			philos_statisfied = false;
 		pthread_mutex_unlock(&table->philos[i].philo_m);
-		if (table->meal_min != -1 && philos_statisfied)
-		{
-			stop_everything(table, true);
-			return (true);
-		}
+	}
+	if (table->meal_min != -1 && philos_statisfied)
+	{
+		stop_everything(table, true);
+		return (true);
 	}
 	return (false);
 }

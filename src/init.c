@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/29 16:15:40 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:55:51 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_table	*init_data(char **argv)
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
-	table->th_nb = 0;
 	table->stop = false;
 	if (argv[5])
 		table->meal_min = ft_atoi(argv[5]);

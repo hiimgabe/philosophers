@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:07:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:56 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:42:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	join_threads(t_table *table)
 			return (1);
 	}
 	if (table->philo_nb > 1)
-		pthread_join(table->monitor, NULL);
+	{
+		pthread_join(table->monitor, NULL); // BREAKING HERE
+	}
 	return (0);
 }
 
