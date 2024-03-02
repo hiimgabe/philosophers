@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:07:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/01 14:42:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:27:51 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	destroy_mutexes(t_table	*table)
 {
 	int	i;
+
 	i = -1;
 	while (++i < table->philo_nb)
 	{
@@ -37,7 +38,7 @@ int	join_threads(t_table *table)
 	}
 	if (table->philo_nb > 1)
 	{
-		pthread_join(table->monitor, NULL); // BREAKING HERE
+		pthread_join(table->monitor, NULL);
 	}
 	return (0);
 }

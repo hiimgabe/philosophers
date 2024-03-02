@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:38:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/02/29 10:01:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:37:14 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ int	error_exit(const char *error)
 	printf("%s\n", error);
 	return (EXIT_FAILURE);
 }
+
 long	get_time(void)
 {
-	struct timeval curr_time;
+	struct timeval	curr_time;
 
 	gettimeofday(&curr_time, NULL);
-	return ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));	
+	return ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));
 }
+
 int	ft_atoi(const char *str)
 {
 	int	n;
@@ -33,7 +35,7 @@ int	ft_atoi(const char *str)
 		str++;
 	if (*str == '+')
 		str++;
-	while(is_digit(*str))
+	while (is_digit(*str))
 		n = (n * 10) + (*str++ - 48);
 	return (n);
 }
@@ -41,19 +43,18 @@ int	ft_atoi(const char *str)
 void	thread_queue(time_t start)
 {
 	while (get_time() < start)
-		continue;
+		continue ;
 }
+
 void	philo_timer(t_table *table, time_t time)
 {
 	time_t	stop;
 
 	stop = get_time() + time;
-	//printf("Timer philo\nstop	=	%ld\ntime	=	%ld\ncurr	=	%ld\n", stop, time, get_time());
 	while (get_time() < stop)
 	{
 		if (is_finished(table))
-			break;
+			break ;
 		usleep(100);
 	}
-	//printf("Left timer at %ld\n", get_time());
 }

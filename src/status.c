@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:24:52 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/01 14:52:05 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:28:36 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	write_status(t_philo *philo, t_status status)
 {
-	char	*msg;
+	char		*msg;
 	long int	curr_time;
 
 	if (is_finished(philo->table))
@@ -30,7 +30,7 @@ void	write_status(t_philo *philo, t_status status)
 	else if (status == DEAD)
 		msg = "died";
 	pthread_mutex_lock(&philo->table->write_m);
-	curr_time = get_time();	
+	curr_time = get_time();
 	printf("%ld\t\t", curr_time - philo->table->start);
 	printf("%d %s.\n", philo->id, msg);
 	pthread_mutex_unlock(&philo->table->write_m);

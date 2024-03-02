@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/01 14:56:14 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:23:32 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 	* ./philo 5 800 200 200 [5]
 */
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
-typedef	enum s_fork
+typedef enum s_fork
 {
 	LEFT = 0,
 	RIGHT = 1,
@@ -110,4 +110,4 @@ void	write_status(t_philo *philo, t_status status);
 // exit.c
 void	finish_dinner(t_table *table);
 
-# endif
+#endif

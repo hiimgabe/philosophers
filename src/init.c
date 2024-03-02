@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/01 14:55:51 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:24:35 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 static pthread_mutex_t	*init_forks(t_table *table)
 {
-	int	i;
+	int				i;
 	pthread_mutex_t	*forks;
 
 	forks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
@@ -85,7 +85,7 @@ static t_philo	*init_philos(t_table *table)
 
 t_table	*init_data(char **argv)
 {
-	t_table *table;
+	t_table	*table;
 
 	table = (t_table *)malloc(sizeof(t_table));
 	if (!table)

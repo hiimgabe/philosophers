@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:27:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/01 14:56:10 by gabe             ###   ########.fr       */
+/*   Updated: 2024/03/02 21:30:35 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	think(t_philo *philo)
 	write_status(philo, THINK);
 	philo_timer(philo->table, thinking_time);
 }
+
 void	lonely_philo(t_philo *philo)
 {
 	write_status(philo, FORK1);
@@ -57,17 +58,17 @@ void	*routine(void *data)
 
 	philo = (t_philo *)data;
 	thread_queue(philo->table->start);
-	pthread_mutex_lock(&philo->philo_m);								//	experiment if we really need to update last_meal a second time
-	philo->last_meal = philo->table->start;								//	or if it is enough to update it on start_routine()
+	pthread_mutex_lock(&philo->philo_m);
+	philo->last_meal = philo->table->start;
 	pthread_mutex_unlock(&philo->philo_m);
 	if (philo->table->philo_nb == 1)
 	{
 		lonely_philo(philo);
 		return (NULL);
-	}								//	for now it seems to need the redundancy (idk why)																	lonely_philo(philo) goes in here <----------
+	}
 	if (philo->id % 2)
 		think(philo);
-	while(!is_finished(philo->table))
+	while (!is_finished(philo->table))
 	{
 		eat_sleep(philo);
 		think(philo);
