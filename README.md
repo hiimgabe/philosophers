@@ -5,8 +5,8 @@ Simulation of a dinner between philosophers with the help of threads and mutexes
 
 ## **Rules**
 Each philosopher is a thread.<br>
-There's the same number of forks(also threads) as philosophers.<br>
-No data races. We are not F1.<br>
+There's the same number of forks as philosophers.<br>
+Use mutexes to prevent data races.<br>
 
 ## **Usage**
 Compile using `make` and run `./philo time_to_die time_to_eat time_to_sleep meal_nb`.<br>
