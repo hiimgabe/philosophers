@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:04:51 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/02 21:24:35 by gabe             ###   ########.fr       */
+/*   Updated: 2024/05/08 15:40:48 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-/*
-	this seems to be okay for now
-
-	we initialiaze the mutexes and allocate memory necessary for our program to work
-
-*/
 
 static pthread_mutex_t	*init_forks(t_table *table)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:51:45 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/02 21:23:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/05/09 15:49:46 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	thread_queue(time_t start);
 void	philo_timer(t_table *table, time_t time);
 
 // parsing.c
-void	parse_input(char **argv);
+int		parse_input(char **argv);
 bool	is_space(char c);
 bool	is_digit(char c);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:24:52 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/02 21:28:36 by gabe             ###   ########.fr       */
+/*   Updated: 2024/05/08 16:51:13 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	write_status(t_philo *philo, t_status status)
 	char		*msg;
 	long int	curr_time;
 
+	msg = NULL;
 	if (is_finished(philo->table))
 		return ;
 	if (status == EAT)

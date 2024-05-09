@@ -4,7 +4,7 @@ OBJ 	= ${SRC:.c=.o}
 
 CC 		= cc
 RM 		= rm -f
-CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g -D DEBUG=true
+CFLAGS	= -Wall -Wextra -Werror -pthread #-fsanitize=thread -g -D DEBUG=true
 INCLUDE = -I include
 LIBS	= -L/usr/lib/gcc/x86_64-linux-gnu/11 -ltsan
 
@@ -18,7 +18,8 @@ END 	= \033[0m
 	@echo "${GREEN}compiling${END}: $<"
 
 ${NAME}: ${OBJ}
-	@${CC} ${OBJ} ${LIBS} -o ${NAME}
+	@${CC} ${OBJ} -o ${NAME}
+#	@${CC} ${OBJ} ${LIBS} -o ${NAME}
 	@echo "${GREEN}${NAME} created${END}"
 
 all: ${NAME}

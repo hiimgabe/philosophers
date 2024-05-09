@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:52:30 by gabe              #+#    #+#             */
-/*   Updated: 2024/03/02 21:34:48 by gabe             ###   ########.fr       */
+/*   Updated: 2024/05/09 15:50:14 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (error_exit("ERROR: Wrong input arguments.\n"));
-	parse_input(argv);
+	if (parse_input(argv))
+		return (error_exit("ERROR: Parsing error.\n"));
 	table = init_data(argv);
 	if (!table)
 		return (error_exit("ERROR: Failed to init data.\n"));
