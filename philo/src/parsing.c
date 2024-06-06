@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:03:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/05/09 15:50:47 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:24:26 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@ bool	is_space(char c)
 
 static int	check_digit(char *argv)
 {
+	int	i;
+
+	i = -1;
 	while (is_space(*argv))
 		argv++;
 	if (*argv == '+')
 		argv++;
 	else if (*argv == '-')
 		return (error_exit("ERROR: Negative number.\n"));
-	if (!is_digit(*argv))
-		return (error_exit("ERROR: Non digit argument.\n"));
+	while (argv[++i])
+		if (!is_digit(argv[i]))
+			return (error_exit("ERROR: Non digit character.\n"));
 	return (0);
 }
 
