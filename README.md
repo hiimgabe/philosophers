@@ -11,7 +11,7 @@
 
 
 ## Objective
-Simulation of a dinner between philosophers with the help of threads and mutexes.<br>
+Simulation of a dinner between philosophers using threads and mutexes.<br>
 
 ## Rules
 Each philosopher is a thread.<br>
